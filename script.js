@@ -1,5 +1,6 @@
 var scoreCounter = 0; //create a score counter variable set it to 0
-
+var currentQuestion = 0; //current question 
+var userAnswer = ""; // current answer the user picks
 // select the HTML timer element with a countdown function
 var timerElement = document.getElementById('timer');
 
@@ -45,9 +46,25 @@ var quiz = [
     answer: "C. quotes"
     },
 ];
-
-
-
+//start the quiz when user click on the start quiz button
+function startQuiz(){
+    document.getElementById("btn").addEventListener("click", selectOption)
+    startQuestion();    //start asking the first question
+}
+//examine whether the user select an option
+function selectOption(){
+    checkAnswer();
+}
+//compare answer to see if the users answer correctly
+function checkAnswer(){
+    if (userAnswer==quiz[currentQuestion].options[quiz[currentQuestion].answer]){
+        scoreCounter += 1;
+        nextQuestion();
+    }else{
+        //penalty by deducting 5s from the timer
+        nextQuestion();
+    }
+}
 
 
 /*pseudocode
