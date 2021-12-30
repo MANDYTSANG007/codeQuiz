@@ -1,3 +1,51 @@
+var scoreCounter = 0; //create a score counter variable set it to 0
+
+// select the HTML timer element with a countdown function
+var timerElement = document.getElementById('timer');
+
+function timer() {
+    var timeLeft = 60;
+    var timeInterval = setInterval(function(){
+        if(timeLeft >1) {
+            timerElement.textContent = timeLeft + ' seconds remaining';
+            timeLeft--;
+        }else if(timeLeft === 1) {
+            timerElement.textContent = timeLeft + ' second remaining';
+            timeLeft--;
+        }else {
+            timerElement.textContent = '';
+            clearInterval(timeInterval);
+            //displayMessage();
+            
+        }
+    }, 1000);
+}
+//timer();
+
+//create object's properties and set up a quiz questions array
+var quiz = [
+    {question1: "A very useful tool used during development and debugging for printing content to the debugger is: ",
+    options: [ "A. JavaScript", "B. terminal/bash", "C. for loops", "D. console.log"],
+    answer: "D. console.log"
+    },
+    {question2: "Commonly used data types DO NOT include: ",
+    options: [ "A. strings", "B. booleans", "C. alerts", "D. numbers"],
+    answer: "C. alerts"
+    },
+    {question3: "The condition in an if / else statement is enclosed within _______. ",
+    options: ["A. quotes", "B. curly brackets", "C. parentheses", "D. square brackets"],
+    answer: "B. curly brackets"
+    },
+    {question4: "Arrays in JavaScript can be used to store _______.",
+    options: ["A. numbers and strings", "B. other arrays", "C. booleans", "D. all of the above"],
+    answer: "D. all of the above"
+    },
+    {quesiton5: "String values must be enclosed within _____ when being assigned to variables.",
+    options: ["A. commas", "B. curly brackets", "C. quotes", "D. parentheses"],
+    answer: "C. quotes"
+    },
+];
+
 
 
 
@@ -22,7 +70,8 @@ use for loop to move through each question one by one
 when all questions are answered or when the time ran out, the game comes to an end. 
 display a box asking user to input his/her initial
 when user clicks submit
-display highscores
+display highscores - need to set up a local storage. When user refreshes the browser, the scores remain. 
+
 
 
 
