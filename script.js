@@ -49,8 +49,15 @@ var quiz = [
 //start the quiz when user click on the start quiz button
 function startQuiz(){
     document.getElementById("btn").addEventListener("click", selectOption)
-    startQuestion();    //start asking the first question
+    startQuestion(currentQuestion);    //start asking the first question
 }
+function startQuestion(currentQuestion){
+    timer();    //start the timer
+    userAnswer = quiz[currentQuestion].options[0];
+    
+
+}
+
 //examine whether the user select an option
 function selectOption(){
     checkAnswer();
