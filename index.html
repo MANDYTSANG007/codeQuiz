@@ -9,10 +9,18 @@
   </head>
   <body>
       <h1>Coding Quiz Challenge</h1>
-      <p id="question">Try to answer the following code-related questions within the time limit. <br>
+      <p >Try to answer the following code-related questions within the time limit. <br>
         Ten seconds will be deducted for incorrect answers.</p>
-      
-      <button type="button" id="btn">Start Quiz</button>
+      <section id="quizSection">
+        <p id="question"></p>
+        <section class="options">
+            <button id="option1">A</button>
+            <button id="option2">B</button>
+            <button id="option3">C</button>
+            <button id="option4">D</button>
+        </section>
+      </section>
+      <button type="button" id="start-btn" class="start-quiz-btn">Start Quiz</button>
       <section id="timer"></section>
       <script src="script.js"></script>
   </body>

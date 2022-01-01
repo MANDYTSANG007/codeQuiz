@@ -25,36 +25,36 @@ function timer() {
 
 //create object's properties and set up a quiz questions array
 var quiz = [
-    {question1: "A very useful tool used during development and debugging for printing content to the debugger is: ",
+    {question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
     options: [ "A. JavaScript", "B. terminal/bash", "C. for loops", "D. console.log"],
     answer: "D. console.log"
     },
-    {question2: "Commonly used data types DO NOT include: ",
+    {question: "Commonly used data types DO NOT include: ",
     options: [ "A. strings", "B. booleans", "C. alerts", "D. numbers"],
     answer: "C. alerts"
     },
-    {question3: "The condition in an if / else statement is enclosed within _______. ",
+    {question: "The condition in an if / else statement is enclosed within _______. ",
     options: ["A. quotes", "B. curly brackets", "C. parentheses", "D. square brackets"],
     answer: "B. curly brackets"
     },
-    {question4: "Arrays in JavaScript can be used to store _______.",
+    {question: "Arrays in JavaScript can be used to store _______.",
     options: ["A. numbers and strings", "B. other arrays", "C. booleans", "D. all of the above"],
     answer: "D. all of the above"
     },
-    {quesiton5: "String values must be enclosed within _____ when being assigned to variables.",
+    {quesiton: "String values must be enclosed within _____ when being assigned to variables.",
     options: ["A. commas", "B. curly brackets", "C. quotes", "D. parentheses"],
     answer: "C. quotes"
     },
 ];
 //start the quiz when user click on the start quiz button
 function startQuiz(){
-    document.getElementById("btn").addEventListener("click", selectOption)
+    document.getElementById("start-btn").addEventListener("click", selectOption)
     startQuestion(currentQuestion);    //start asking the first question
 }
 function startQuestion(currentQuestion){
     timer();    //start the timer
     userAnswer = quiz[currentQuestion].options[0];
-    
+    document.getElementById("question").textContent = quiz[currentQuestion].question;
 
 }
 
