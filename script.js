@@ -89,8 +89,11 @@ function startQuestion(currentQuestion){
         options += quiz[currentQuestion].options[i];
         i++;
     }*/
-    
-    document.getElementById("options").addEventListener("change",selectAnswer);
+    A.innerText = quiz[currentQuestion].optionA;
+    B.innerText = quiz[currentQuestion].optionB;
+    C.innerText = quiz[currentQuestion].optionC;
+    D.innerText = quiz[currentQuestion].optionD;
+    //document.getElementById("options").addEventListener("change",selectAnswer);
 }
 
 function displayMessage(){
@@ -124,7 +127,17 @@ function nextQuestion(){
         startQuestion(currentQuestion);
     }
 }
-
+/*function displayOptions(){
+    var quizArr = quiz[currentQuestion];
+    var optionA = document.getElementById("A");
+    var optionB = document.getElementById("B");
+    var optionC = document.getElementById("C");
+    var optionD = document.getElementById("D");
+    optionA.innerText = quizArr.optionA;
+    optionB.innerText = quizArr.optionB;
+    optionC.innerText = quizArr.optionC;
+    optionD.innerText = quizArr.optionD;
+}*/
 
 /*pseudocode
 create a counter to record score and initially set its value to zero
