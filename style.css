@@ -25,18 +25,19 @@ h1, p{
     display: inline-block;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 20%;
+    top: 40%;
     height: 20px;
     width: 200px;
     padding: 10px;
 }
-#option1, #option2, #option3, #option4 {
+.option {
     height: 30px;
     width: 200px;
     margin: 5px;
 }
-#option1:hover, #option2:hover, #option3:hover, #option4:hover {
-    color:blue;
+.option:hover {
+    color:yellow;
+    background-color: purple;
 }
 
 

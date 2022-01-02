@@ -4,8 +4,8 @@ var userAnswer = ""; // current answer the user picks
 // select the HTML timer element with a countdown function
 var timerElement = document.getElementById('timer');
 
-function timer() {
-    var timeLeft = 60;
+function startTimer() {
+    var timeLeft = 60;      //the whole quiz is set for 60 seconds
     var timeInterval = setInterval(function(){
         if(timeLeft >1) {
             timerElement.textContent = timeLeft + ' seconds remaining';
@@ -16,7 +16,7 @@ function timer() {
         }else {
             timerElement.textContent = '';
             clearInterval(timeInterval);
-            //displayMessage();
+            displayMessage();
             
         }
     }, 1000);
@@ -26,50 +26,100 @@ function timer() {
 //create object's properties and set up a quiz questions array
 var quiz = [
     {question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
-    options: [ "A. JavaScript", "B. terminal/bash", "C. for loops", "D. console.log"],
-    answer: "D. console.log"
+    optionA: "JavaScript", 
+    optionB: "terminal/bash", 
+    optionC: "for loops", 
+    optionD: "console.log",
+    answer: "D"
     },
     {question: "Commonly used data types DO NOT include: ",
-    options: [ "A. strings", "B. booleans", "C. alerts", "D. numbers"],
-    answer: "C. alerts"
+    optionA: "A. strings", 
+    optionB: "booleans", 
+    optionC: "alerts", 
+    optionD: "numbers",
+    answer: "C"
     },
     {question: "The condition in an if / else statement is enclosed within _______. ",
-    options: ["A. quotes", "B. curly brackets", "C. parentheses", "D. square brackets"],
-    answer: "B. curly brackets"
+    optionA: "quotes", 
+    optionB: "curly brackets", 
+    optionC: "parentheses", 
+    optionD: "square brackets",
+    answer: "B"
     },
     {question: "Arrays in JavaScript can be used to store _______.",
-    options: ["A. numbers and strings", "B. other arrays", "C. booleans", "D. all of the above"],
-    answer: "D. all of the above"
+    optionA: "numbers and strings", 
+    optionB: "other arrays", 
+    optionC: "booleans", 
+    optionD: "all of the above",
+    answer: "D"
     },
     {quesiton: "String values must be enclosed within _____ when being assigned to variables.",
-    options: ["A. commas", "B. curly brackets", "C. quotes", "D. parentheses"],
-    answer: "C. quotes"
+    optionA: "commas", 
+    optionB: "curly brackets", 
+    optionC: "quotes", 
+    optionD: "parentheses",
+    answer: "C"
     },
 ];
+
 //start the quiz when user click on the start quiz button
-function startQuiz(){
-    document.getElementById("start-btn").addEventListener("click", selectOption)
+/*function startQuiz(){
+    
+    document.getElementById("start-btn").addEventListener("click", selectOption());
     startQuestion(currentQuestion);    //start asking the first question
+}*/
+var hideParagraph = document.getElementById("hide");
+var start = document.getElementById("start-btn");
+start.addEventListener("click", startQuestion);
+
+function selectAnswer(event){
+    currentAnswer = event.target.value;
 }
 function startQuestion(currentQuestion){
-    timer();    //start the timer
+    start.style.display ="none";
+    hideParagraph.style.display = "none";
+    startTimer();    //start the timer
     userAnswer = quiz[currentQuestion].options[0];
     document.getElementById("question").textContent = quiz[currentQuestion].question;
+    var options ="";
+    var i=0;
+    while(i<quiz[currentQuestion].options.length){
+        options += quiz[currentQuestion].options[i];
+        i++;
+    }
+    
+    document.getElementById("options").addEventListener("change",selectAnswer);
+}
 
+function displayMessage(){
+    var input=document.createElement("input");
+    input.setAttribute("type", "text");
+    console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
+    //should also allow user to input their initial
 }
 
 //examine whether the user select an option
 function selectOption(){
+    
     checkAnswer();
-}
+};
 //compare answer to see if the users answer correctly
 function checkAnswer(){
     if (userAnswer==quiz[currentQuestion].options[quiz[currentQuestion].answer]){
         scoreCounter += 1;
+        console.log("correct!")
         nextQuestion();
     }else{
+        console.log("Incorrect!")
         //penalty by deducting 5s from the timer
         nextQuestion();
+    }
+}
+//user advance to the next question
+function nextQuestion(){
+    if(currentQuestion<quiz.length-1){
+        currentQuestion++;
+        startQuestion(currentQuestion);
     }
 }
 
