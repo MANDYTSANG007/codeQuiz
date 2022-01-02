@@ -33,7 +33,7 @@ var quiz = [
     answer: "D"
     },
     {question: "Commonly used data types DO NOT include: ",
-    optionA: "A. strings", 
+    optionA: "strings", 
     optionB: "booleans", 
     optionC: "alerts", 
     optionD: "numbers",
@@ -53,7 +53,7 @@ var quiz = [
     optionD: "all of the above",
     answer: "D"
     },
-    {quesiton: "String values must be enclosed within _____ when being assigned to variables.",
+    {question: "String values must be enclosed within _____ when being assigned to variables.",
     optionA: "commas", 
     optionB: "curly brackets", 
     optionC: "quotes", 
@@ -72,21 +72,23 @@ var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 start.addEventListener("click", startQuestion);
 
-function selectAnswer(event){
-    currentAnswer = event.target.value;
-}
+//function selectAnswer(event){
+//    currentAnswer = event.target.value;
+//}
+
 function startQuestion(currentQuestion){
     start.style.display ="none";
     hideParagraph.style.display = "none";
+    quizSection.style.display ="block";
     startTimer();    //start the timer
-    userAnswer = quiz[currentQuestion].options[0];
-    document.getElementById("question").textContent = quiz[currentQuestion].question;
-    var options ="";
+    document.getElementById("questions").textContent = quiz[currentQuestion].question;
+    userAnswer = quiz[currentQuestion].optionA ||quiz[currentQuestion].optionB ||quiz[currentQuestion].optionC ||quiz[currentQuestion].optionD;
+    /*var options ="";
     var i=0;
     while(i<quiz[currentQuestion].options.length){
         options += quiz[currentQuestion].options[i];
         i++;
-    }
+    }*/
     
     document.getElementById("options").addEventListener("change",selectAnswer);
 }
@@ -104,8 +106,8 @@ function selectOption(){
     checkAnswer();
 };
 //compare answer to see if the users answer correctly
-function checkAnswer(){
-    if (userAnswer==quiz[currentQuestion].options[quiz[currentQuestion].answer]){
+function checkAnswer(userAnswer){
+    if (userAnswer==quiz[currentQuestion].answer){
         scoreCounter += 1;
         console.log("correct!")
         nextQuestion();
