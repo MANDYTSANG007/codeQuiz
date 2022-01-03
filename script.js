@@ -17,11 +17,9 @@ function startTimer() {
             timerElement.textContent = '';
             clearInterval(timeInterval);
             displayMessage();
-            
         }
     }, 1000);
 }
-//timer();
 
 //create object's properties and set up a quiz questions array
 var quiz = [
@@ -72,10 +70,6 @@ var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 start.addEventListener("click", startQuestion);
 
-//function selectAnswer(event){
-//    currentAnswer = event.target.value;
-//}
-
 function startQuestion(currentQuestion){
     start.style.display ="none";
     hideParagraph.style.display = "none";
@@ -83,16 +77,11 @@ function startQuestion(currentQuestion){
     startTimer();    //start the timer
     document.getElementById("questions").textContent = quiz[currentQuestion].question;
     userAnswer = quiz[currentQuestion].optionA ||quiz[currentQuestion].optionB ||quiz[currentQuestion].optionC ||quiz[currentQuestion].optionD;
-    /*var options ="";
-    var i=0;
-    while(i<quiz[currentQuestion].options.length){
-        options += quiz[currentQuestion].options[i];
-        i++;
-    }*/
-    A.innerText = quiz[currentQuestion].optionA;
-    B.innerText = quiz[currentQuestion].optionB;
-    C.innerText = quiz[currentQuestion].optionC;
-    D.innerText = quiz[currentQuestion].optionD;
+    
+    A.innerHTML = quiz[currentQuestion].optionA;
+    B.innerHTML = quiz[currentQuestion].optionB;
+    C.innerHTML = quiz[currentQuestion].optionC;
+    D.innerHTML = quiz[currentQuestion].optionD;
     //document.getElementById("options").addEventListener("change",selectAnswer);
 }
 
@@ -125,19 +114,11 @@ function nextQuestion(){
     if(currentQuestion<quiz.length-1){
         currentQuestion++;
         startQuestion(currentQuestion);
+    }else {
+        displayMessage();
+        clearTimeout(timeInterval);
     }
 }
-/*function displayOptions(){
-    var quizArr = quiz[currentQuestion];
-    var optionA = document.getElementById("A");
-    var optionB = document.getElementById("B");
-    var optionC = document.getElementById("C");
-    var optionD = document.getElementById("D");
-    optionA.innerText = quizArr.optionA;
-    optionB.innerText = quizArr.optionB;
-    optionC.innerText = quizArr.optionC;
-    optionD.innerText = quizArr.optionD;
-}*/
 
 /*pseudocode
 create a counter to record score and initially set its value to zero
