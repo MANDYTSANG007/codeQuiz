@@ -1,7 +1,7 @@
 var scoreCounter = 0; //create a score counter variable set it to 0
 var currentQuestion = 0; //current question 
 var userAnswer = ""; // current answer the user picks
-// select the HTML timer element with a countdown function
+var initialInput = document.querySelector("#initial");
 var timerElement = document.getElementById('timer');
 
 function startTimer() {
@@ -60,12 +60,6 @@ var quiz = [
     },
 ];
 
-//start the quiz when user click on the start quiz button
-/*function startQuiz(){
-    
-    document.getElementById("start-btn").addEventListener("click", selectOption());
-    startQuestion(currentQuestion);    //start asking the first question
-}*/
 var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 start.addEventListener("click", startQuestion);
@@ -111,7 +105,7 @@ function checkAnswer(userAnswer){
 }
 //user advance to the next question
 function nextQuestion(){
-    if(currentQuestion<quiz.length-1){
+    if(currentQuestion<=quiz.length-1){
         currentQuestion++;
         startQuestion(currentQuestion);
     }else {
@@ -119,6 +113,26 @@ function nextQuestion(){
         clearTimeout(timeInterval);
     }
 }
+
+submitButton.addEventListener("click", function(event){
+    event.preventDefault();
+    var initial = document.querySelector("#initial");
+    if (initial==="") {
+        displayMessage("error", "Initial cannot be blank");
+    }else{
+        displayMessage("success", "Thank you!");
+        localStorage.setItem("initial", initial);
+        renderLastRegistered();
+    }
+});
+
+function renderLastRegistered(){
+    var initial = localStorage.getItem("initial");
+    if (!initial) {
+        return;
+    }
+}
+
 
 /*pseudocode
 create a counter to record score and initially set its value to zero
@@ -141,7 +155,7 @@ when all questions are answered or when the time ran out, the game comes to an e
 display a box asking user to input his/her initial
 when user clicks submit
 display highscores - need to set up a local storage. When user refreshes the browser, the scores remain. 
-
+add a "go back" button and a clear highscores button.
 
 
 
