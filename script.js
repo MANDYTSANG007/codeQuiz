@@ -6,6 +6,7 @@ var timerElement = document.getElementById('timer');
 
 function startTimer() {
     var timeLeft = 60;      //the whole quiz is set for 60 seconds
+
     var timeInterval = setInterval(function(){
         if(timeLeft >1) {
             timerElement.textContent = timeLeft + ' seconds remaining';
@@ -13,11 +14,14 @@ function startTimer() {
         }else if(timeLeft === 1) {
             timerElement.textContent = timeLeft + ' second remaining';
             timeLeft--;
-        }else {
+        }else if(currentQuestion > 5) {
+            clearInterval(timeInterval);
+        }else{
             timerElement.textContent = '';
             clearInterval(timeInterval);
             displayMessage();
         }
+    
     }, 1000);
 }
 
@@ -64,11 +68,12 @@ var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 start.addEventListener("click", startQuestion);
 
-function startQuestion(currentQuestion){
+function startQuestion(){
+    startTimer();    //start the timer
+    console.log('hit');
     start.style.display ="none";
     hideParagraph.style.display = "none";
     quizSection.style.display ="block";
-    startTimer();    //start the timer
     document.getElementById("questions").textContent = quiz[currentQuestion].question;
     userAnswer = quiz[currentQuestion].optionA ||quiz[currentQuestion].optionB ||quiz[currentQuestion].optionC ||quiz[currentQuestion].optionD;
     
@@ -76,13 +81,15 @@ function startQuestion(currentQuestion){
     B.innerHTML = quiz[currentQuestion].optionB;
     C.innerHTML = quiz[currentQuestion].optionC;
     D.innerHTML = quiz[currentQuestion].optionD;
+
     //document.getElementById("options").addEventListener("change",selectAnswer);
 }
 
 function displayMessage(){
+
     var input=document.createElement("input");
     input.setAttribute("type", "text");
-    console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
+    //console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
     //should also allow user to input their initial
 }
 
@@ -95,13 +102,15 @@ function selectOption(){
 function checkAnswer(userAnswer){
     if (userAnswer==quiz[currentQuestion].answer){
         scoreCounter += 1;
-        console.log("correct!")
+        document.getElementById("answerResult").innerHTML = "Correct!"
         nextQuestion();
     }else{
-        console.log("Incorrect!")
+        document.getElementById("answerResult").innerHTML = "Incorrect!"
         //penalty by deducting 5s from the timer
+        timeLeft--;
         nextQuestion();
     }
+    
 }
 //user advance to the next question
 function nextQuestion(){
@@ -109,6 +118,7 @@ function nextQuestion(){
         currentQuestion++;
         startQuestion(currentQuestion);
     }else {
+      
         displayMessage();
         clearTimeout(timeInterval);
     }
