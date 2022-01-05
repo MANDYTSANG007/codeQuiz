@@ -1,29 +1,13 @@
 var scoreCounter = 0; //create a score counter variable set it to 0
-var currentQuestion = 0; //current question 
-var userAnswer = ""; // current answer the user picks
-var initialInput = document.querySelector("#initial");
-var timerElement = document.getElementById('timer');
-
-function startTimer() {
-    var timeLeft = 60;      //the whole quiz is set for 60 seconds
-
-    var timeInterval = setInterval(function(){
-        if(timeLeft >1) {
-            timerElement.textContent = timeLeft + ' seconds remaining';
-            timeLeft--;
-        }else if(timeLeft === 1) {
-            timerElement.textContent = timeLeft + ' second remaining';
-            timeLeft--;
-        }else if(currentQuestion > 5) {
-            clearInterval(timeInterval);
-        }else{
-            timerElement.textContent = '';
-            clearInterval(timeInterval);
-            displayMessage();
-        }
-    
-    }, 1000);
-}
+var currentQuestion = 0; //current question starts from 0
+var userAnswer = ""; // current answer the user picks set it to empty as it is still an unknown
+var initialInput = document.querySelector("#initial");//select the id:initial and set it as the value of the variable
+var timerElement = document.getElementById('timer'); //select the timer element by its id
+var hideParagraph = document.getElementById("hide");
+var start = document.getElementById("start-btn");
+var submitButton = document.querySelector("#submit");
+var timeLeft = 60;
+start.addEventListener("click", startQuestion);
 
 //create object's properties and set up a quiz questions array
 var quiz = [
@@ -64,19 +48,37 @@ var quiz = [
     },
 ];
 
-var hideParagraph = document.getElementById("hide");
-var start = document.getElementById("start-btn");
-start.addEventListener("click", startQuestion);
+function startTimer() {
+    //var timeLeft = 60;      //the whole quiz is set for 60 seconds
+    var timeInterval = setInterval(function(){
+        if(timeLeft >1) {
+            timerElement.textContent = timeLeft + ' seconds remaining';
+            timeLeft--;
+        }else if(timeLeft === 1) {
+            timerElement.textContent = timeLeft + ' second remaining';
+            timeLeft--;
+        }else if(currentQuestion > 5) {     //stop the timer when all question has been answered
+            clearInterval(timeInterval);
+        }else{
+            //timerElement.textContent = '';
+            clearInterval(timeInterval);
+            displayMessage();
+        }
+    
+    }, 1000);
+}
+
+
+document.getElementById("start-btn").addEventListener("click", function(){
+    startTimer();
+});
 
 function startQuestion(){
-    startTimer();    //start the timer
-    console.log('hit');
     start.style.display ="none";
     hideParagraph.style.display = "none";
     quizSection.style.display ="block";
     document.getElementById("questions").textContent = quiz[currentQuestion].question;
     userAnswer = quiz[currentQuestion].optionA ||quiz[currentQuestion].optionB ||quiz[currentQuestion].optionC ||quiz[currentQuestion].optionD;
-    
     A.innerHTML = quiz[currentQuestion].optionA;
     B.innerHTML = quiz[currentQuestion].optionB;
     C.innerHTML = quiz[currentQuestion].optionC;
@@ -86,7 +88,6 @@ function startQuestion(){
 }
 
 function displayMessage(){
-
     var input=document.createElement("input");
     input.setAttribute("type", "text");
     //console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
@@ -95,7 +96,7 @@ function displayMessage(){
 
 //examine whether the user select an option
 function selectOption(){
-    
+    s
     checkAnswer();
 };
 //compare answer to see if the users answer correctly
@@ -110,7 +111,7 @@ function checkAnswer(userAnswer){
         timeLeft--;
         nextQuestion();
     }
-    
+
 }
 //user advance to the next question
 function nextQuestion(){
