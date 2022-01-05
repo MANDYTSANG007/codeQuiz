@@ -6,6 +6,7 @@ var timerElement = document.getElementById('timer'); //select the timer element 
 var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 var submitButton = document.querySelector("#submitButton");
+var highscoreButton = document.querySelector("#highscoreButton");
 var timeLeft = 60;
 start.addEventListener("click", startQuestion);
 
@@ -61,10 +62,10 @@ function startTimer() {
             //clearInterval(timeInterval);
             displayMessage();
             console.log("hello");
-        //}else{
-            //timerElement.textContent = '';
-            //clearInterval(timeInterval);
-            //displayMessage();
+        }else{
+            timerElement.textContent = '';
+            clearInterval(timeInterval);
+            displayMessage();
         }
     
     }, 1000);
@@ -96,7 +97,7 @@ function displayMessage(){
     //var input=document.createElement("input");
     //input.setAttribute("type", "text");
     //document.getElementByClass("result").textContent = "All done! Your score is " + scoreCounter + "." + "Enter your initial: " //<input type="text" name="initial" id="initial" placeholder="Enter your initial"/>"
-    console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
+    prompt("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " );
     //should also allow user to input their initial
 }
 
@@ -120,33 +121,39 @@ function checkAnswer(userAnswer){
 //user advance to the next question
 function nextQuestion(){
     if(currentQuestion<=quiz.length-1 && timeLeft>1){
-        currentQuestion++;
         startQuestion(currentQuestion);
+        currentQuestion++;
+        
     }else if (currentQuestion>quiz.length-1 && timeLeft>1){
         displayMessage();
         console.log("hello");
         //stopTimer();
     } 
 }
+highscoreButton.addEventListener("click", function(event){
+    var initial = localStorage.getItem("initial");
+    document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
 
-submitButton.addEventListener("click", function(event){
+});
+
+/*submitButton.addEventListener("click", function(event){
     event.preventDefault();
     var initial = document.querySelector("#initial");
     if (initial==="") {
-        displayMessage("error", "Initial cannot be blank");
+        displayM("error", "Initial cannot be blank");
     }else{
-        displayMessage("success", "Thank you!");
+        displayM("success", "Thank you!");
         localStorage.setItem("initial", initial);
         renderLastRegistered();
     }
-});
+});*/
 
-function renderLastRegistered(){
+/*function renderLastRegistered(){
     var initial = localStorage.getItem("initial");
     if (!initial) {
         return;
     }
-}
+}*/
 
 
 /*pseudocode
