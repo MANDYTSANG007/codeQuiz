@@ -7,6 +7,7 @@ var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 var submitButton = document.querySelector("#submitButton");
 var highscoreButton = document.querySelector("#highscoreButton");
+var highscoreList = document.querySelector("#highscoreList");
 var timeLeft = 60;
 start.addEventListener("click", startQuestion);
 
@@ -132,10 +133,18 @@ function nextQuestion(){
 }
 highscoreButton.addEventListener("click", function(event){
     var initial = localStorage.getItem("initial");
-    document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
+    prompt("Highscores:" + initial + )
+    //document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
 
 });
 
+function renderLastRegistered(){
+    highscoreList.innerHTML = "";
+    var initial = localStorage.getItem("initial");
+    if (!initial) {
+        return;
+    }
+}
 /*submitButton.addEventListener("click", function(event){
     event.preventDefault();
     var initial = document.querySelector("#initial");
@@ -148,12 +157,6 @@ highscoreButton.addEventListener("click", function(event){
     }
 });*/
 
-/*function renderLastRegistered(){
-    var initial = localStorage.getItem("initial");
-    if (!initial) {
-        return;
-    }
-}*/
 
 
 /*pseudocode
