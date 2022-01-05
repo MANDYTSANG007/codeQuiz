@@ -5,7 +5,7 @@ var initialInput = document.querySelector("#initial");//select the id:initial an
 var timerElement = document.getElementById('timer'); //select the timer element by its id
 var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
-var submitButton = document.querySelector("#submit");
+var submitButton = document.querySelector("#submitButton");
 var timeLeft = 60;
 start.addEventListener("click", startQuestion);
 
@@ -46,23 +46,25 @@ var quiz = [
     optionD: "parentheses",
     answer: "C"
     },
-];
+]; 
 
 function startTimer() {
     //var timeLeft = 60;      //the whole quiz is set for 60 seconds
     var timeInterval = setInterval(function(){
-        if(timeLeft >1) {
+        if(timeLeft >1 && currentQuestion <5) {
             timerElement.textContent = timeLeft + ' seconds remaining';
             timeLeft--;
-        }else if(timeLeft === 1) {
+        }else if(timeLeft === 1 && currentQuestion <5) {
             timerElement.textContent = timeLeft + ' second remaining';
             timeLeft--;
-        }else if(currentQuestion > 5) {     //stop the timer when all question has been answered
-            clearInterval(timeInterval);
-        }else{
-            //timerElement.textContent = '';
-            clearInterval(timeInterval);
+        }else if(timeLeft >1 && currentQuestion > 5) {     //stop the timer when all question has been answered
+            //clearInterval(timeInterval);
             displayMessage();
+            console.log("hello");
+        //}else{
+            //timerElement.textContent = '';
+            //clearInterval(timeInterval);
+            //displayMessage();
         }
     
     }, 1000);
@@ -86,43 +88,45 @@ function startQuestion(){
 
     //document.getElementById("options").addEventListener("change",selectAnswer);
 }
+/*function stopTimer(){
+    clearInterval(timeInterval);
+}*/
 
 function displayMessage(){
-    var input=document.createElement("input");
-    input.setAttribute("type", "text");
-    //console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
+    //var input=document.createElement("input");
+    //input.setAttribute("type", "text");
+    //document.getElementByClass("result").textContent = "All done! Your score is " + scoreCounter + "." + "Enter your initial: " //<input type="text" name="initial" id="initial" placeholder="Enter your initial"/>"
+    console.log("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " + input);
     //should also allow user to input their initial
 }
 
 //examine whether the user select an option
 function selectOption(){
-    s
+    
     checkAnswer();
 };
 //compare answer to see if the users answer correctly
 function checkAnswer(userAnswer){
-    if (userAnswer==quiz[currentQuestion].answer){
+    if (userAnswer==quiz[currentQuestion].answer && timeLeft >1){
         scoreCounter += 1;
         document.getElementById("answerResult").innerHTML = "Correct!"
         nextQuestion();
-    }else{
+    }else if (userAnswer != quiz[currentQuestion].answer && timeLeft >1){
         document.getElementById("answerResult").innerHTML = "Incorrect!"
-        //penalty by deducting 5s from the timer
-        timeLeft--;
+        timeLeft=timeLeft-5; //penalty by deducting 5s from the timer
         nextQuestion();
     }
-
 }
 //user advance to the next question
 function nextQuestion(){
-    if(currentQuestion<=quiz.length-1){
+    if(currentQuestion<=quiz.length-1 && timeLeft>1){
         currentQuestion++;
         startQuestion(currentQuestion);
-    }else {
-      
+    }else if (currentQuestion>quiz.length-1 && timeLeft>1){
         displayMessage();
-        clearTimeout(timeInterval);
-    }
+        console.log("hello");
+        //stopTimer();
+    } 
 }
 
 submitButton.addEventListener("click", function(event){
