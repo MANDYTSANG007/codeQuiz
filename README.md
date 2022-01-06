@@ -3,7 +3,7 @@
 
 
 ## Getting Started
-
+A multiple-choice quiz starts when users press on a start button. A countdown timer will display an initial 60 seconds as the quiz duration. The quiz consists of five questions with four options to choose from. Users must pick an option in order to move on to the next question. Users will gain one point towards the counter when they pick a correct answer. Five seconds will be deducted from the timer when users pick a wrong answer. If users finish the quiz before the time is up, a window will be displayed for users to enter their initial. A scoreboard will then display their names and scores. When users click on the "Take it again" button, the quiz will start all over again. 
 
 
 ## Built With
@@ -15,7 +15,7 @@
 ## Deployed Link
 
 * [Deployed Link to Live Site](#)
-* [Link to Github](#)
+* [Link to Github](https://github.com/MANDYTSANG007/codeQuiz)
 
 ## Design Layout
 
