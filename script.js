@@ -43,7 +43,7 @@ var highscoreList = document.querySelector("#highscoreList");
 function startTimer() {
     var timeInterval = setInterval(function(){
         if(timeLeft >1 && currentQuestion <5) {
-            //timerElement.textContent = timeLeft + ' seconds remaining'; // update the text element of the timer 
+            timerElement.textContent = timeLeft + ' seconds remaining'; // update the text element of the timer 
             timeLeft--;
         }else if(timeLeft === 1 && currentQuestion <5) {
             timerElement.textContent = timeLeft + ' second remaining';
@@ -71,10 +71,12 @@ function startQuestion(){
         
     }
     var ul = document.getElementById("options");
+    ul.innerHTML="";
     for(var i=0; i < quiz[currentQuestion].options.length; ++i){
         var li = document.createElement("li");
-        li.innerText = quiz[currentQuestion].options[i]
-        li.setAttribute("onclick", "checkAnswer();");
+        li.innerText = quiz[currentQuestion].options[i];
+        userAnswer = quiz[currentQuestion].options[i];
+        li.setAttribute("onclick", "checkAnswer(userAnswer);");
         ul.appendChild(li);
         
     }
@@ -102,9 +104,11 @@ function checkAnswer(userAnswer){
     if (userAnswer==quiz[currentQuestion].answer && timeLeft >1){
         scoreCounter += 1;
         document.getElementById("answerResult").innerHTML = "Correct!";
+        currentQuestion++;
         nextQuestion();
     }else if (userAnswer != quiz[currentQuestion].answer && timeLeft >1){
         document.getElementById("answerResult").innerHTML = "Incorrect!";
+        currentQuestion++;
         timeLeft=timeLeft-5; //penalty by deducting 5s from the timer
         nextQuestion();
     }
@@ -113,12 +117,11 @@ function checkAnswer(userAnswer){
 function nextQuestion(){
     if(currentQuestion<=quiz.length-1 && timeLeft>1){
         startQuestion(currentQuestion);
-        currentQuestion++;
+        
         
     }else if (currentQuestion>quiz.length-1 && timeLeft>1){
         hideParagraph.style.display = "none";
         displayMessage();
-        console.log("hello");
         //stopTimer();
     } 
 }
