@@ -118,6 +118,7 @@ function nextQuestion(){
 function renderLastRegistered(){
     highscoreList.innerHTML = "";  //the list will be updated 
     var initial = localStorage.getItem("initial");
+    
     highscoreButton.addEventListener("click", function(event){
         hideParagraph.style.display = "none";
         document.getElementById("initial").textContent="Highscores:" + initial +" <li>1</li><li>2</li>";
