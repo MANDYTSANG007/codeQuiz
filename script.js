@@ -80,18 +80,11 @@ function startQuestion(){
         ul.appendChild(li);     //add li to ul
         
     }
-    //for(var i=0; i < quiz[currentQuestion].options.length; ++i){
-    //    optionElement[i].textContent = quiz[currentQuestion].options[i];
-    //    optionElement[i].addEventListener("click", function()){
 }
-
+//user to input their initial
 function displayMessage(){
-    //var input=document.createElement("input");
-    //input.setAttribute("type", "text");
-    //document.getElementByClass("result").textContent = "All done! Your score is " + scoreCounter + "." + "Enter your initial: " //<input type="text" name="initial" id="initial" placeholder="Enter your initial"/>"
     prompt("All done! Your score is " + scoreCounter + ". Enter your initial: " );
     renderLastRegistered();
-    //should also allow user to input their initial
 }
 
 //examine whether the user select an option
@@ -119,35 +112,18 @@ function nextQuestion(){
         startQuestion(currentQuestion);
     }else if (currentQuestion>quiz.length-1 && timeLeft>1){
         hideParagraph.style.display = "none";
-        //stopTimer();
     } 
 }
-/*highscoreButton.addEventListener("click", function(event){
-    var initial = localStorage.getItem("initial");
-    document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
-
-});*/
 
 function renderLastRegistered(){
     highscoreList.innerHTML = "";  //the list will be updated 
     var initial = localStorage.getItem("initial");
-    var highscoreText 
     highscoreButton.addEventListener("click", function(event){
+        hideParagraph.style.display = "none";
         document.getElementById("initial").textContent="Highscores:" + initial +" <li>1</li><li>2</li>";
     }
 )};
-renderLastRegistered();
-/*submitButton.addEventListener("click", function(event){
-    event.preventDefault();
-    var initial = document.querySelector("#initial");
-    if (initial==="") {
-        displayM("error", "Initial cannot be blank");
-    }else{
-        displayM("success", "Thank you!");
-        localStorage.setItem("initial", initial);
-        renderLastRegistered();
-    }
-});*/
+
 
 
 

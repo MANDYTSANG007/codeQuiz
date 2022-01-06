@@ -1,5 +1,5 @@
 # Code Quiz
-
+A multiple-choice quesiton quiz that will run in a browser created by using HTML, CSS, and JavaScript.
 
 
 ## Getting Started
@@ -14,12 +14,12 @@ A multiple-choice quiz starts when users press on a start button. A countdown ti
 
 ## Deployed Link
 
-* [Deployed Link to Live Site](#)
+* [Deployed Link to Live Site](https://mandytsang007.github.io/codeQuiz/)
 * [Link to Github](https://github.com/MANDYTSANG007/codeQuiz)
 
 ## Design Layout
 
-![alt text](#)
+![alt text](codeQuizscreenshot.png)
 
 
 ## Authors
