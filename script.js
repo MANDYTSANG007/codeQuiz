@@ -75,9 +75,9 @@ function startQuestion(){
     for(var i=0; i < quiz[currentQuestion].options.length; ++i){
         var li = document.createElement("li");
         li.innerText = quiz[currentQuestion].options[i];
-        userAnswer = quiz[currentQuestion].options[i];
-        li.setAttribute("onclick", "checkAnswer(userAnswer);");
-        ul.appendChild(li);
+        let answer = quiz[currentQuestion].options[i];
+        li.addEventListener('click', function() {checkAnswer(answer);});
+        ul.appendChild(li);     //add li to ul
         
     }
     //for(var i=0; i < quiz[currentQuestion].options.length; ++i){
@@ -117,11 +117,8 @@ function checkAnswer(userAnswer){
 function nextQuestion(){
     if(currentQuestion<=quiz.length-1 && timeLeft>1){
         startQuestion(currentQuestion);
-        
-        
     }else if (currentQuestion>quiz.length-1 && timeLeft>1){
         hideParagraph.style.display = "none";
-        displayMessage();
         //stopTimer();
     } 
 }
