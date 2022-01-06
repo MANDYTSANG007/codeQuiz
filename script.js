@@ -1,57 +1,42 @@
 var scoreCounter = 0; //create a score counter variable set it to 0
 var currentQuestion = 0; //current question starts from 0
 var userAnswer = ""; // current answer the user picks set it to empty as it is still an unknown
+var timeLeft = 60;
+var questionCount = quiz.length //this variable w/ an initial value of the quiz's length
 var initialInput = document.querySelector("#initial");//select the id:initial and set it as the value of the variable
-var timerElement = document.getElementById('timer'); //select the timer element by its id
+var timerElement = document.getElementById("timer"); //select the timer element by its id
 var hideParagraph = document.getElementById("hide");
 var start = document.getElementById("start-btn");
 var submitButton = document.querySelector("#submitButton");
 var highscoreButton = document.querySelector("#highscoreButton");
 var highscoreList = document.querySelector("#highscoreList");
-var timeLeft = 60;
 start.addEventListener("click", startQuestion);
 
 //create object's properties and set up a quiz questions array
 var quiz = [
     {question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
-    optionA: "JavaScript", 
-    optionB: "terminal/bash", 
-    optionC: "for loops", 
-    optionD: "console.log",
-    answer: "D"
+    options: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+    answer: "console.log"
     },
     {question: "Commonly used data types DO NOT include: ",
-    optionA: "strings", 
-    optionB: "booleans", 
-    optionC: "alerts", 
-    optionD: "numbers",
-    answer: "C"
+    options: ["strings", "booleans", "alerts", "numbers"] 
+    answer: "alerts"
     },
     {question: "The condition in an if / else statement is enclosed within _______. ",
-    optionA: "quotes", 
-    optionB: "curly brackets", 
-    optionC: "parentheses", 
-    optionD: "square brackets",
-    answer: "B"
+    options: ["quotes", "curly brackets", "parentheses", "square brackets"] 
+    answer: "curly brackets"
     },
     {question: "Arrays in JavaScript can be used to store _______.",
-    optionA: "numbers and strings", 
-    optionB: "other arrays", 
-    optionC: "booleans", 
-    optionD: "all of the above",
-    answer: "D"
+    options: ["numbers and strings", "other arrays", "booleans", "all of the above"] 
+    answer: "all of the above"
     },
     {question: "String values must be enclosed within _____ when being assigned to variables.",
-    optionA: "commas", 
-    optionB: "curly brackets", 
-    optionC: "quotes", 
-    optionD: "parentheses",
-    answer: "C"
+    options: ["commas", "curly brackets", "quotes", "parentheses"]
+    answer: "quotes"
     },
 ]; 
-
+//set up timer
 function startTimer() {
-    //var timeLeft = 60;      //the whole quiz is set for 60 seconds
     var timeInterval = setInterval(function(){
         if(timeLeft >1 && currentQuestion <5) {
             timerElement.textContent = timeLeft + ' seconds remaining';
@@ -60,7 +45,7 @@ function startTimer() {
             timerElement.textContent = timeLeft + ' second remaining';
             timeLeft--;
         }else if(timeLeft >1 && currentQuestion > 5) {     //stop the timer when all question has been answered
-            //clearInterval(timeInterval);
+            clearInterval(timeInterval);
             displayMessage();
             console.log("hello");
         }else{
@@ -98,7 +83,8 @@ function displayMessage(){
     //var input=document.createElement("input");
     //input.setAttribute("type", "text");
     //document.getElementByClass("result").textContent = "All done! Your score is " + scoreCounter + "." + "Enter your initial: " //<input type="text" name="initial" id="initial" placeholder="Enter your initial"/>"
-    prompt("All done! Your score is " + scoreCounter + ". <br>Enter your initial: " );
+    prompt("All done! Your score is " + scoreCounter + ". Enter your initial: " );
+    renderLastRegistered();
     //should also allow user to input their initial
 }
 
@@ -126,25 +112,27 @@ function nextQuestion(){
         currentQuestion++;
         
     }else if (currentQuestion>quiz.length-1 && timeLeft>1){
+        hideParagraph.style.display = "none";
         displayMessage();
         console.log("hello");
         //stopTimer();
     } 
 }
-highscoreButton.addEventListener("click", function(event){
+/*highscoreButton.addEventListener("click", function(event){
     var initial = localStorage.getItem("initial");
-    prompt("Highscores:" + initial + )
-    //document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
+    document.getElementById("initial").textContent="Highscores "+ initial +" <li>1</li><li>2</li>";
 
-});
+});*/
 
 function renderLastRegistered(){
-    highscoreList.innerHTML = "";
+    highscoreList.innerHTML = "";  //the list will be updated 
     var initial = localStorage.getItem("initial");
-    if (!initial) {
-        return;
+    var highscoreText 
+    highscoreButton.addEventListener("click", function(event){
+        document.getElementById("initial").textContent="Highscores:" + initial +" <li>1</li><li>2</li>";
     }
-}
+)};
+renderLastRegistered();
 /*submitButton.addEventListener("click", function(event){
     event.preventDefault();
     var initial = document.querySelector("#initial");
