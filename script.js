@@ -2,36 +2,41 @@ var scoreCounter = 0; //create a score counter variable set it to 0
 var currentQuestion = 0; //current question starts from 0
 var userAnswer = ""; // current answer the user picks set it to empty as it is still an unknown
 var timeLeft = 60;
-var questionCount = quiz.length //this variable w/ an initial value of the quiz's length
+var questionCount = quiz.length; //this variable w/ an initial value of the quiz's length
+
 var initialInput = document.querySelector("#initial");//select the id:initial and set it as the value of the variable
 var timerElement = document.getElementById("timer"); //select the timer element by its id
 var hideParagraph = document.getElementById("hide");
-var start = document.getElementById("start-btn");
+var start = document.getElementById("start-btn").addEventListener("click", startQuestion); //select the start button from html
+document.getElementById("start-btn").addEventListener("click", function(){
+    startTimer();
+});
+
 var submitButton = document.querySelector("#submitButton");
 var highscoreButton = document.querySelector("#highscoreButton");
 var highscoreList = document.querySelector("#highscoreList");
-start.addEventListener("click", startQuestion);
+
 
 //create object's properties and set up a quiz questions array
 var quiz = [
     {question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
-    options: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+    options: ["JavaScript", "terminal/bash", "for loops", "console.log"],
     answer: "console.log"
     },
     {question: "Commonly used data types DO NOT include: ",
-    options: ["strings", "booleans", "alerts", "numbers"] 
+    options: ["strings", "booleans", "alerts", "numbers"], 
     answer: "alerts"
     },
     {question: "The condition in an if / else statement is enclosed within _______. ",
-    options: ["quotes", "curly brackets", "parentheses", "square brackets"] 
+    options: ["quotes", "curly brackets", "parentheses", "square brackets"], 
     answer: "curly brackets"
     },
     {question: "Arrays in JavaScript can be used to store _______.",
-    options: ["numbers and strings", "other arrays", "booleans", "all of the above"] 
+    options: ["numbers and strings", "other arrays", "booleans", "all of the above"], 
     answer: "all of the above"
     },
     {question: "String values must be enclosed within _____ when being assigned to variables.",
-    options: ["commas", "curly brackets", "quotes", "parentheses"]
+    options: ["commas", "curly brackets", "quotes", "parentheses"],
     answer: "quotes"
     },
 ]; 
@@ -39,7 +44,7 @@ var quiz = [
 function startTimer() {
     var timeInterval = setInterval(function(){
         if(timeLeft >1 && currentQuestion <5) {
-            timerElement.textContent = timeLeft + ' seconds remaining';
+            timerElement.textContent = timeLeft + ' seconds remaining'; // update the text element of the timer 
             timeLeft--;
         }else if(timeLeft === 1 && currentQuestion <5) {
             timerElement.textContent = timeLeft + ' second remaining';
@@ -47,20 +52,16 @@ function startTimer() {
         }else if(timeLeft >1 && currentQuestion > 5) {     //stop the timer when all question has been answered
             clearInterval(timeInterval);
             displayMessage();
-            console.log("hello");
+        }else if (timeLeft === 0){
+            alert("Game Over!")
+            displayMessage();
         }else{
             timerElement.textContent = '';
             clearInterval(timeInterval);
             displayMessage();
         }
-    
     }, 1000);
 }
-
-
-document.getElementById("start-btn").addEventListener("click", function(){
-    startTimer();
-});
 
 function startQuestion(){
     start.style.display ="none";
