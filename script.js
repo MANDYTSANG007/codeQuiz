@@ -2,6 +2,7 @@ var scoreCounter = 0; //create a score counter variable set it to 0
 var currentQuestion = 0; //current question starts from 0
 var userAnswer = ""; // current answer the user picks set it to empty as it is still an unknown
 var timeLeft = 60;
+var highscores = [];
 //create object's properties and set up a quiz questions array
 var quiz = [
     {question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
@@ -35,7 +36,6 @@ document.getElementById("start-btn").addEventListener("click", function(){
     startTimer();
 });
 
-var submitButton = document.querySelector("#submitButton");
 var highscoreButton = document.querySelector("#highscoreButton");
 var highscoreList = document.querySelector("#highscoreList");
 
@@ -87,11 +87,6 @@ function displayMessage(){
     renderLastRegistered();
 }
 
-//examine whether the user select an option
-function selectOption(){
-    
-    checkAnswer();
-};
 //compare answer to see if the users answer correctly
 function checkAnswer(userAnswer){
     if (userAnswer==quiz[currentQuestion].answer && timeLeft >1){
@@ -116,14 +111,49 @@ function nextQuestion(){
 }
 
 function renderLastRegistered(){
-    highscoreList.innerHTML = "";  //the list will be updated 
-    var initial = localStorage.getItem("initial");
+    highscoreList.innerHTML = "";  //clear highscore list element and the list will be updated 
+    for (var i = 0; i < highscores.length; i++){
+        var highscore = highscores[i];
+        var li = document.createElement("li");
+        li.textContent = highscore;
+        li.setAttribute("data-index", i);
+    }
+};
+/*
+function init() {
+    var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+    if (highscores !== null) {
+        highscores = storedHighscores;
+    }
+    renderLastRegistered();
+}
+
+function storeHighscores(){
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+
+highscoreForm.addEventListener("submit", function(event){
+    event.preventDefault();
+    var highscoreText = highscoreInput.value.trim();
+
+    if (highscoreText === ""){
+        return;
+    }
+    highscores.push(highscoreText);
+    highscoreInput.value= "";
+
+    storeHighscores();
+    renderLastRegistered();
+
+});
+init()
+/*    var initial = localStorage.getItem("initial");
     
     highscoreButton.addEventListener("click", function(event){
         hideParagraph.style.display = "none";
         document.getElementById("initial").textContent="Highscores:" + initial +" <li>1</li><li>2</li>";
     }
-)};
+)};*/
 
 
 
