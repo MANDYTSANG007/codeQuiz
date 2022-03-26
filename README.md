@@ -27,7 +27,7 @@ A multiple-choice quiz starts when users press on a start button. A countdown ti
 * **Mandy Tsang** 
 
 - [Link to Portfolio Site](https://mandytsang007.github.io/new-portfolio/)
-- [Link to Github](https://github.com/MANDYTSANG007)
+- [Link to Github]( https://github.com/MANDYTSANG007)
 - [Link to LinkedIn](https://www.linkedin.com/in/man-tsang-64308b22a/)
 
 
