@@ -19,7 +19,7 @@ A multiple-choice quiz starts when users press on a start button. A countdown ti
 
 ## Design Layout
 
-![alt text](codeQuizscreenshot.png)
+Coming Soon!
 
 
 ## Authors
