@@ -14,7 +14,7 @@ A multiple-choice quiz starts when users press on a start button. A countdown ti
 
 ## Deployed Link
 
-* [Deployed Link to Live Site](https://mandytsang007.github.io/codeQuiz/)
+* [Link to Live Site](https://mandytsang007.github.io/codeQuiz/)
 * [Link to Github](https://github.com/MANDYTSANG007/codeQuiz)
 
 ## Design Layout
