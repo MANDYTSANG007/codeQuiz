@@ -1,5 +1,5 @@
 # Code Quiz
-A multiple-choice quesiton quiz that will run in a browser created by using HTML, CSS, and JavaScript.
+A multiple-choice quesiton quiz that will run in a browser. It is created by using HTML, CSS, and JavaScript.
 
 
 ## Getting Started
