@@ -1,5 +1,5 @@
 # Code Quiz
-A multiple-choice question quiz that is created by using HTML, CSS, and JavaScript.
+A multiple-choice quiz that is created by using HTML, CSS, and JavaScript.
 
 
 ## Getting Started
