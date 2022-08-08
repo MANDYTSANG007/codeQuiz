@@ -26,9 +26,8 @@ Coming Soon!
 
 **Mandy Tsang** 
 
-- [Link to Portfolio](https://mandytsang007.github.io/new-portfolio/)
+- [Link to Portfolio](https://mandytsang007.github.io/mt-portfolio/)
 - [Link to Github](https://github.com/MANDYTSANG007)
-- [Link to LinkedIn](https://www.linkedin.com/in/man-tsang-64308b22a/)
 
 
 ## License
